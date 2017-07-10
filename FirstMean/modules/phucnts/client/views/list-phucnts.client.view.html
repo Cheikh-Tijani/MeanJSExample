@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Phucnts</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="phucnt in vm.phucnts"
+       ui-sref="phucnts.view({ phucntId: phucnt._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="phucnt.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="phucnt.user" ng-bind="phucnt.user.displayName"></span>
+        <span ng-if="!phucnt.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="phucnt.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.phucnts.$resolved && !vm.phucnts.length">
+    No Phucnts yet, why don't you <a ui-sref="phucnts.create">create one</a>?
+  </div>
+</section>
