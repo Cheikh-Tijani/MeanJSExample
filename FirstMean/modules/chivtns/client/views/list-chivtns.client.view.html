@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Chivtns</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="chivtn in vm.chivtns"
+       ui-sref="chivtns.view({ chivtnId: chivtn._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="chivtn.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="chivtn.user" ng-bind="chivtn.user.displayName"></span>
+        <span ng-if="!chivtn.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="chivtn.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.chivtns.$resolved && !vm.chivtns.length">
+    No Chivtns yet, why don't you <a ui-sref="chivtns.create">create one</a>?
+  </div>
+</section>
